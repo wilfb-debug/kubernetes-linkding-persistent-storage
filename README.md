@@ -54,3 +54,12 @@ This lab was built and tested locally using **Rancher Desktop (K3s)**, following
 │   ├── 03-sqlite-data-persisted.png
 │   └── 04-linkding-ui.png
 └── README.md
+---
+
+## STEP 4 — Commit the README
+After pasting the README:
+
+```bash
+git add README.md
+git commit -m "Add architect-level documentation for Linkding persistent storage"
+git push
