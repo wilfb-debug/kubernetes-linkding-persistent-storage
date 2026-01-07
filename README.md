@@ -1,29 +1,20 @@
-# kubernetes-linkding-persistent-storage
-Deployed Linkding on local Kubernetes (Rancher Desktop/K3s) using namespaces, YAML manifests, Services, and PersistentVolumeClaims to persist SQLite data across pod restarts.
+# Kubernetes Linkding with Persistent Storage
 
-# Linkding on Kubernetes (Rancher Desktop/K3s) — Stateful App with Persistent Storage
+## Overview
+This project demonstrates how to deploy a **stateful application** on Kubernetes using
+**PersistentVolumeClaims (PVCs)** to ensure data durability across pod restarts.
 
-## What this project proves
-- Deployed workloads using Kubernetes YAML manifests (Deployment + Service)
-- Used namespaces to isolate applications
-- Exposed services and accessed them via port-forwarding
-- Implemented persistence using PersistentVolumeClaim (PVC) and verified PV binding
-- Verified data survival across pod restarts (stateful workload)
+The application used is **Linkding**, a self-hosted bookmark manager, deployed into its own
+namespace with persistent SQLite storage.
 
-## Tech stack
-- Rancher Desktop (K3s)
-- kubectl
-- Docker image: sissbruecker/linkding
-- StorageClass: local-path
+This lab was built and tested locally using **Rancher Desktop (K3s)**, following production-grade Kubernetes storage patterns.
 
-## Architecture (high level)
-- Namespace: `linkding`
-- Deployment: `linkding` (1 replica)
-- Service: `linkding` (ClusterIP)
-- PVC: `linkding-data` mounted to `/etc/linkding/data`
+---
 
-## How to run (quickstart)
-### 1) Create namespace
-```bash
-kubectl create namespace linkding
-kubectl config set-context --current --namespace=linkding
+## Architecture Summary
+
+- **Namespace isolation** (`linkding`)
+- **Deployment** for application lifecycle management
+- **Service** for internal access
+- **PersistentVolumeClaim (PVC)** for durable storage
+- **StorageClass**: `local-path` (dynamic provisioning)
